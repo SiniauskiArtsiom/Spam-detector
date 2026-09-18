@@ -27,22 +27,6 @@
 
 
 
-## Структура
-
-├── src/ # модули: data, features, models, train, evaluate, analysis, predict
-├── notebooks/
-│ ├── 01_eda.ipynb # разведочный анализ
-│ └── 02_lstm.ipynb # обучение BiLSTM (Colab)
-├── models/ # сохранённые модели + results.csv + analysis.png
-├── tests/ # unit-тесты (pytest)
-├── app.py # Streamlit-демо
-├── Dockerfile
-├── Makefile
-├── requirements.txt # зависимости приложения и ML
-├── requirements-colab.txt # + tensorflow для Colab
-└── .github/workflows/ci.yml
-
-
 
 ## Быстрый старт
 
