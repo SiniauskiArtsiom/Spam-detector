@@ -1,6 +1,13 @@
-from sklearn.metrics import (classification_report, f1_score, roc_auc_score,
-                              precision_score, recall_score, confusion_matrix,
-                              average_precision_score)
+from sklearn.metrics import (
+    average_precision_score,
+    classification_report,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
+
 
 def get_metrics(model, X_test, y_test) -> dict:
     y_pred = model.predict(X_test)
@@ -19,12 +26,14 @@ def get_metrics(model, X_test, y_test) -> dict:
         metrics["pr_auc"] = average_precision_score(y_test, y_score)
     return metrics
 
+
 def print_metrics(model, X_test, y_test, name: str = "Model"):
     print(f"\n=== {name} ===")
     print(classification_report(y_test, model.predict(X_test)))
     m = get_metrics(model, X_test, y_test)
     print({k: round(v, 4) for k, v in m.items()})
     return m
+
 
 def print_confusion(model, X_test, y_test):
     print(confusion_matrix(y_test, model.predict(X_test)))

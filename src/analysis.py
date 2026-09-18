@@ -1,9 +1,10 @@
 import joblib
 import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.metrics import ConfusionMatrixDisplay, RocCurveDisplay, PrecisionRecallDisplay
+from sklearn.metrics import ConfusionMatrixDisplay, PrecisionRecallDisplay, RocCurveDisplay
+
 from src.data import add_features, load_data, split_data
 from src.features import load_vectorizer
+
 
 def run_analysis():
     df = add_features(load_data())
@@ -33,6 +34,7 @@ def run_analysis():
     print("\nПримеры ошибок:")
     for text in errors.head(5).values:
         print("—", text[:200], "\n")
+
 
 if __name__ == "__main__":
     run_analysis()

@@ -1,10 +1,12 @@
 import joblib
 import pandas as pd
 from sklearn.model_selection import GridSearchCV
-from src.data import load_data, add_features, split_data
+
+from src.data import add_features, load_data, split_data
+from src.evaluate import get_metrics
 from src.features import build_tfidf, fit_transform, save_vectorizer
 from src.models import get_models, get_param_grids
-from src.evaluate import get_metrics
+
 
 def train(tune: bool = True):
     df = add_features(load_data())
@@ -21,7 +23,7 @@ def train(tune: bool = True):
 
     for name, model in models.items():
         if tune:
-            search = GridSearchCV(model, grids[name], cv=3, scoring='f1', n_jobs=-1, verbose=0)
+            search = GridSearchCV(model, grids[name], cv=3, scoring="f1", n_jobs=-1, verbose=0)
             search.fit(X_train_vec, y_train)
             model = search.best_estimator_
             print(f"{name} best params: {search.best_params_}")
@@ -44,6 +46,7 @@ def train(tune: bool = True):
     pd.DataFrame(results).T.to_csv("models/results.csv")
     print("\nРезультаты сохранены в models/results.csv")
     return best_model, results
+
 
 if __name__ == "__main__":
     train()

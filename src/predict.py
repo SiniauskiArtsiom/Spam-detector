@@ -1,8 +1,11 @@
 import joblib
+
 from src.data import clean_text
+
 
 def load_artifacts(model_path="models/best_model.joblib", vec_path="models/tfidf.joblib"):
     return joblib.load(model_path), joblib.load(vec_path)
+
 
 def predict(text: str, model, vectorizer) -> dict:
     cleaned = clean_text(text)
@@ -16,6 +19,7 @@ def predict(text: str, model, vectorizer) -> dict:
     else:
         proba = None
     return {"label": pred, "probability": proba}
+
 
 if __name__ == "__main__":
     model, vec = load_artifacts()
